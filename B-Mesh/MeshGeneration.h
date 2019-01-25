@@ -118,26 +118,26 @@ void meshGeneration(TrialPointer trial, std::string path) {
 
 #pragma mark - Triangulation
 
-    Histogram interiorHistogram, edgeHistogram;
+//    Histogram interiorHistogram, edgeHistogram;
     
-    std::shared_ptr<CGALTriangulation> interiorTriangulation, edgeTriangulation;
+//    std::shared_ptr<CGALTriangulation> interiorTriangulation, edgeTriangulation;
 
-    if(image.size.depth == 1) {
-        interiorTriangulation = std::make_shared<CGALTriangulation2D>( samples, image.size);
-        edgeTriangulation = std::make_shared<CGALTriangulation2D>( frameSamples, image.size);
+//    if(image.size.depth == 1) {
+//        interiorTriangulation = std::make_shared<CGALTriangulation2D>( samples, image.size);
+//        edgeTriangulation = std::make_shared<CGALTriangulation2D>( frameSamples, image.size);
         
-        totalTime += brahand::Profile<>::time("InteriorTriangulation",path,  [&](){ interiorTriangulation->triangulate(); });
-        totalTime += brahand::Profile<>::time("EdgeTriangulation",path,  [&](){ edgeTriangulation->triangulate(); });
-    } else {
-    }
+//        totalTime += brahand::Profile<>::time("InteriorTriangulation",path,  [&](){ interiorTriangulation->triangulate(); });
+//        totalTime += brahand::Profile<>::time("EdgeTriangulation",path,  [&](){ edgeTriangulation->triangulate(); });
+//    } else {
+//    }
     
-    output << "EdgeTriangulationCount\t" << edgeTriangulation->elementsCount << "\n";
-    output << "InteriorTriangulationCount\t" << interiorTriangulation->elementsCount << "\n";
+//    output << "EdgeTriangulationCount\t" << edgeTriangulation->elementsCount << "\n";
+//    output << "InteriorTriangulationCount\t" << interiorTriangulation->elementsCount << "\n";
     
-    edgeHistogram = edgeTriangulation->generateHistogram(path, "edgeTriangulation", image);
-    interiorHistogram = interiorTriangulation->generateHistogram(path, "interiorTriangulation", image);
+//    edgeHistogram = edgeTriangulation->generateHistogram(path, "edgeTriangulation", image);
+//    interiorHistogram = interiorTriangulation->generateHistogram(path, "interiorTriangulation", image);
     
-    saveHistogram(path, "histogram.txt", edgeHistogram, interiorHistogram);
+//    saveHistogram(path, "histogram.txt", edgeHistogram, interiorHistogram);
     output << "Total time\t" << totalTime << "\n";
 }
 

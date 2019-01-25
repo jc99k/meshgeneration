@@ -17,10 +17,10 @@
     #define KERNELS_PATH PROJECT_PATH ""
 #else
     #define IMAGEMAGICK_PATH "/usr/bin/convert"
-    #define RESULTS_PATH "/home/bryan/Desktop/"
-    #define PROJECT_PATH "/home/bryan/Developer/Bryan/Bitbucket/BMesh/B-Mesh/"
+    #define RESULTS_PATH "/home/jcduenas/Desktop/MeshGeneration/"
+    #define PROJECT_PATH "/home/jcduenas/code/MeshGeneration/"
     #define ASSETS_PATH PROJECT_PATH "Assets/"
-    #define KERNELS_PATH PROJECT_PATH "BMesh/Processing/OpenCL/"
+    #define KERNELS_PATH PROJECT_PATH "B-Mesh/BMesh/Processing/OpenCL/"
 #endif
 
 #include <sys/stat.h>
@@ -29,7 +29,7 @@
 int main() {
     std::setbuf(stdout, NULL);
     std::vector<TrialPointer> experiments {
-        BUILD_TRIAL(kMesh1),
+        BUILD_TRIAL(Taz),
     };
     
     for( auto trial : experiments ){

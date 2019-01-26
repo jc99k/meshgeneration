@@ -1,0 +1,8 @@
+version: '3'
+services:
+  bmesh:
+    build: .
+    volumes:
+      - .:/usr/src/app
+    working_dir: /usr/src/app
+    tty: true

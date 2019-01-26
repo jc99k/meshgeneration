@@ -3,8 +3,8 @@
 
 #include "Image.hpp"
 
-#include <CGAL/Exact_predicates_inexact_constructions_kernel.h>
-#include <CGAL/Delaunay_triangulation_2.h>
+// #include <CGAL/Exact_predicates_inexact_constructions_kernel.h>
+// #include <CGAL/Delaunay_triangulation_2.h>
 //#include <CGAL/Delaunay_triangulation_3.h>
 
 #include <fstream>

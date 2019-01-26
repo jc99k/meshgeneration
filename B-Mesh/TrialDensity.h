@@ -6,7 +6,7 @@
 #include "BMesh/Image.hpp"
 #include "BMesh/Exporter.hpp"
 #include "BMesh/Poisson2.hpp"
-#include "BMesh/Triangulation.hpp"
+// #include "BMesh/Triangulation.hpp"
 
 #include <fstream>
 #include <sstream>
@@ -106,97 +106,97 @@ void trialDensity(TrialPointer trial, std::string path) {
 
 #pragma mark - Triangulation
 
-                Histogram histogram;
-                std::shared_ptr<CGALTriangulation> triangulation;
+                // Histogram histogram;
+                // std::shared_ptr<CGALTriangulation> triangulation;
 
-                brahand::Profile<>::time("Triangulation", [&](){
-                    if(image.size.depth == 1){ triangulation = std::make_shared<CGALTriangulation2D>( samples, image.size);
-                    } else { triangulation = std::make_shared<CGALTriangulation3D>( samples, image.size); }
-                });
+                // brahand::Profile<>::time("Triangulation", [&](){
+                //     if(image.size.depth == 1){ triangulation = std::make_shared<CGALTriangulation2D>( samples, image.size);
+                //     } else { triangulation = std::make_shared<CGALTriangulation3D>( samples, image.size); }
+                // });
 
-                histogram = triangulation->generate(path, "triangulation" + std::to_string(trialNumber) , image);
-                std::vector<uint> h = saveHistogram(path, "histogram" + std::to_string(trialNumber) + ".txt", histogram);
+                // histogram = triangulation->generate(path, "triangulation" + std::to_string(trialNumber) , image);
+                // std::vector<uint> h = saveHistogram(path, "histogram" + std::to_string(trialNumber) + ".txt", histogram);
 
-                results.push_back({ trialNumber, minDensity, maxDensity, samples.count, h, {initMin,bounds},{initMin,bounds} });
+                // results.push_back({ trialNumber, minDensity, maxDensity, samples.count, h, {initMin,bounds},{initMin,bounds} });
             }
         }
 
-        path = RESULTS_PATH + trial->identifier + "/";
+        // path = RESULTS_PATH + trial->identifier + "/";
 
-        std::ofstream os;
-        os.open(path + trial->identifier + ".txt");
-        os << results[0].minRange.first << "\t" << results[0].minRange.second << "\n";
-        os << results[0].maxRange.first << "\t" << results[0].maxRange.second << "\n";
-        os << initMin << "\t" << ratio << "\t" << bounds << "\n";
+        // std::ofstream os;
+        // os.open(path + trial->identifier + ".txt");
+        // os << results[0].minRange.first << "\t" << results[0].minRange.second << "\n";
+        // os << results[0].maxRange.first << "\t" << results[0].maxRange.second << "\n";
+        // os << initMin << "\t" << ratio << "\t" << bounds << "\n";
 
-        for( uint i = 0 ; i < results.size() ; ++i) {
-            os << results[i].id << "\t" << results[i].samples << "\t" << results[i].minDensity << "\t" << results[i].maxDensity;
-            histogramAnalysis[results[i].minDensity][results[i].maxDensity] = results[i].histogram;
-            histogramAnalysis[results[i].maxDensity][results[i].minDensity] = results[i].histogram;
-            samplesAnalysis[results[i].minDensity][results[i].maxDensity] = results[i].samples;
-            samplesAnalysis[results[i].maxDensity][results[i].minDensity] = results[i].samples;
-            for( auto f : results[i].histogram) { os << "\t" << f; }
-            os << "\n";
-        }
-        os.close();
+        // for( uint i = 0 ; i < results.size() ; ++i) {
+        //     os << results[i].id << "\t" << results[i].samples << "\t" << results[i].minDensity << "\t" << results[i].maxDensity;
+        //     histogramAnalysis[results[i].minDensity][results[i].maxDensity] = results[i].histogram;
+        //     histogramAnalysis[results[i].maxDensity][results[i].minDensity] = results[i].histogram;
+        //     samplesAnalysis[results[i].minDensity][results[i].maxDensity] = results[i].samples;
+        //     samplesAnalysis[results[i].maxDensity][results[i].minDensity] = results[i].samples;
+        //     for( auto f : results[i].histogram) { os << "\t" << f; }
+        //     os << "\n";
+        // }
+        // os.close();
 
-        std::ofstream os_x; os_x.open(path + trial->identifier + "_x.txt");
-        for( float minDensity = initMin ; minDensity < bounds ; minDensity += ratio ) {
-            for( float maxDensity = initMin ; maxDensity < bounds ; maxDensity += ratio ) {
-                os_x << maxDensity << " ";
-            }
-            os_x << "\n";
-        }
-        os_x.close();
+        // std::ofstream os_x; os_x.open(path + trial->identifier + "_x.txt");
+        // for( float minDensity = initMin ; minDensity < bounds ; minDensity += ratio ) {
+        //     for( float maxDensity = initMin ; maxDensity < bounds ; maxDensity += ratio ) {
+        //         os_x << maxDensity << " ";
+        //     }
+        //     os_x << "\n";
+        // }
+        // os_x.close();
 
-        std::ofstream os_y; os_y.open(path + trial->identifier + "_y.txt");
-        for( float minDensity = initMin ; minDensity < bounds ; minDensity += ratio ) {
-            for( float maxDensity = initMin ; maxDensity < bounds ; maxDensity += ratio ) {
-                os_y << minDensity << " ";
-            }
-            os_y << "\n";
-        }
-        os_y.close();
+        // std::ofstream os_y; os_y.open(path + trial->identifier + "_y.txt");
+        // for( float minDensity = initMin ; minDensity < bounds ; minDensity += ratio ) {
+        //     for( float maxDensity = initMin ; maxDensity < bounds ; maxDensity += ratio ) {
+        //         os_y << minDensity << " ";
+        //     }
+        //     os_y << "\n";
+        // }
+        // os_y.close();
 
-        std::ofstream os_avg; os_avg.open(path + trial->identifier + "_average.txt");
-        std::ofstream os_sum; os_sum.open(path + trial->identifier + "_sumatory.txt");
-        std::ofstream os_min; os_min.open(path + trial->identifier + "_minAngle.txt");
-        std::ofstream os_sam; os_sam.open(path + trial->identifier + "_samples.txt");
+        // std::ofstream os_avg; os_avg.open(path + trial->identifier + "_average.txt");
+        // std::ofstream os_sum; os_sum.open(path + trial->identifier + "_sumatory.txt");
+        // std::ofstream os_min; os_min.open(path + trial->identifier + "_minAngle.txt");
+        // std::ofstream os_sam; os_sam.open(path + trial->identifier + "_samples.txt");
 
-        for( float i = initMin ; i < bounds ; i += ratio ) {
-            for( float j = initMin ; j < bounds ; j += ratio ) {
-                if(histogramAnalysis.find(i) != histogramAnalysis.end()){
-                    if(histogramAnalysis[i].find(j) != histogramAnalysis[i].end()){
-                        int minAngle = 0;
-                        for(int k = 0 ; k < (int)histogramAnalysis[i][j].size() ; ++k){
-                            if(histogramAnalysis[i][j][k] > 0){ minAngle = k; break; }
-                        }
+        // for( float i = initMin ; i < bounds ; i += ratio ) {
+        //     for( float j = initMin ; j < bounds ; j += ratio ) {
+        //         if(histogramAnalysis.find(i) != histogramAnalysis.end()){
+        //             if(histogramAnalysis[i].find(j) != histogramAnalysis[i].end()){
+        //                 int minAngle = 0;
+        //                 for(int k = 0 ; k < (int)histogramAnalysis[i][j].size() ; ++k){
+        //                     if(histogramAnalysis[i][j][k] > 0){ minAngle = k; break; }
+        //                 }
 
-                        uint weight = 1;
-                        uint sumatory = 0;
-                        for(int k = 0 ; k < (int)histogramAnalysis[i][j].size() ; ++k, ++weight){
-                            sumatory += histogramAnalysis[i][j][k] * weight;
-                        }
-                        float average =  sumatory / histogramAnalysis[i][j].size();
+        //                 uint weight = 1;
+        //                 uint sumatory = 0;
+        //                 for(int k = 0 ; k < (int)histogramAnalysis[i][j].size() ; ++k, ++weight){
+        //                     sumatory += histogramAnalysis[i][j][k] * weight;
+        //                 }
+        //                 float average =  sumatory / histogramAnalysis[i][j].size();
 
-                        os_avg << average << " ";
-                        os_sum << sumatory << " ";
-                        os_min << minAngle << " ";
-                        os_sam << samplesAnalysis[i][j] << " ";
-                    }
-                    else{
-                        std::cout << i << " " << j << "\n";
-                        os_avg << 0.0 << " "; os_sum << 0.0 << " "; os_min << 0.0 << " "; os_sam << 0.0 << " ";
-                    }
-                }
-                else{
-                    std::cout << i << " " << j << "\n";
-                    os_avg << 0.0 << " "; os_sum << 0.0 << " "; os_min << 0.0 << " "; os_sam << 0.0 << " ";
-                }
-            }
-            os_avg << "\n"; os_sum << "\n"; os_min << "\n"; os_sam << "\n";
-        }
-        os_avg.close(); os_sum.close(); os_min.close(); os_sam.close();
+        //                 os_avg << average << " ";
+        //                 os_sum << sumatory << " ";
+        //                 os_min << minAngle << " ";
+        //                 os_sam << samplesAnalysis[i][j] << " ";
+        //             }
+        //             else{
+        //                 std::cout << i << " " << j << "\n";
+        //                 os_avg << 0.0 << " "; os_sum << 0.0 << " "; os_min << 0.0 << " "; os_sam << 0.0 << " ";
+        //             }
+        //         }
+        //         else{
+        //             std::cout << i << " " << j << "\n";
+        //             os_avg << 0.0 << " "; os_sum << 0.0 << " "; os_min << 0.0 << " "; os_sam << 0.0 << " ";
+        //         }
+        //     }
+        //     os_avg << "\n"; os_sum << "\n"; os_min << "\n"; os_sam << "\n";
+        // }
+        // os_avg.close(); os_sum.close(); os_min.close(); os_sam.close();
 }
 
 

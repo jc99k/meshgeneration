@@ -17,8 +17,8 @@
     #define KERNELS_PATH PROJECT_PATH ""
 #else
     #define IMAGEMAGICK_PATH "/usr/bin/convert"
-    #define RESULTS_PATH "/home/jcduenas/Desktop/MeshGeneration/"
-    #define PROJECT_PATH "/home/jcduenas/code/MeshGeneration/"
+    #define RESULTS_PATH "/usr/src/app/Results/"
+    #define PROJECT_PATH "/usr/src/app/"
     #define ASSETS_PATH PROJECT_PATH "Assets/"
     #define KERNELS_PATH PROJECT_PATH "B-Mesh/BMesh/Processing/OpenCL/"
 #endif

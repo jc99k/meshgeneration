@@ -13,7 +13,7 @@
 #include "BMesh/Image.hpp"
 #include "BMesh/Exporter.hpp"
 #include "BMesh/Poisson2.hpp"
-#include "BMesh/Triangulation.hpp"
+// #include "BMesh/Triangulation.hpp"
 
 void trialEdges(TrialPointer trial, std::string path) {
     

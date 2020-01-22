@@ -28,7 +28,12 @@ namespace brahand {
                     for ( c = cinit; c <= climit; c++ ){
                         for ( a = y-1; a <= y+1; a++ ){
                             for ( b = x-1; b <= x+1; b++ ){
-                                if ( a == b && b == c ) continue;
+                                // if ( a == b && b == c ) continue;
+                                // if ( a == y-1 && b == x-1 ) continue;
+                                // if ( a == y-1 && b == x+1 ) continue;
+                                // if ( a == y+1 && b == x-1 ) continue;
+                                // if ( a == y+1 && b == x+1 ) continue;
+                                if ( abs(a - y) + abs(b - x) + abs(c - cinit) > 1 ) continue;
                                 
                                 neighborIndex   = (c * this->size.width  * this->size.height) + (a * this->size.width) + b;
                                 neighbor        = this->imagePointer[neighborIndex];
@@ -39,10 +44,17 @@ namespace brahand {
                                 for(uint i = 0 ; i < isovalues.count ; ++i){
                                     
                                     if ( min <= isovalues[i] && isovalues[i] <= max ) {
-                                        dy = (y+a)/2.0;	dx = (x+b)/2.0; dz = (z+c)/2.0;
+                                        // dy = (y+a)/2.0;	dx = (x+b)/2.0; dz = (z+c)/2.0;
                                         
-                                        targetIndex = (dz * this->size.width  * this->size.height) + (dy * this->size.width) + dx;
+                                        // targetIndex = (dz * this->size.width  * this->size.height) + (dy * this->size.width) + dx;
 
+                                        // output.imagePointer[targetIndex] = (AnyObject) 255;
+
+                                        // output.imagePointer[index] = (AnyObject) 255;
+                                        // output.imagePointer[neighborIndex] = (AnyObject) 255;
+
+                                        targetIndex = (min == current)? index : neighborIndex;
+                                        // targetIndex = (max == current)? index : neighborIndex;
                                         output.imagePointer[targetIndex] = (AnyObject) 255;
                                     }
                                 }

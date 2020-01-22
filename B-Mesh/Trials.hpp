@@ -88,7 +88,7 @@ struct Taz : Trial {
     Taz(){
         identifier  = "taz";
         folderPath  = ASSETS_PATH;
-        imageName   = "taz.jpg";
+        imageName   = "taz2.png";
         isovalues   = {140};
         waveLength  = 100;
         flux        = -0.241867;
@@ -141,14 +141,13 @@ struct Fire : Trial {
         identifier  = "fire";
         folderPath  = ASSETS_PATH;
         imageName   = "fire.png";
-        isovalues   = {100};
-        waveLength  = 110;
+        isovalues   = {250};
+        waveLength  = 20;
         flux        = -0.3;
-        minDensity  = 3;
-        maxDensity  = 40;
+        minDensity  = 5;
+        maxDensity  = 50;
     }
 };
-
 
 struct Circles : Trial {
     Circles(){
@@ -361,7 +360,7 @@ struct Dragon : Trial {
         identifier  = "dragon";
         folderPath  = ASSETS_PATH;
         imageName   = "dragon";
-        isovalues   = {16};
+        isovalues   = {120};
         waveLength  = 91;
         flux        = -0.2454;
         minDensity  = 2;
@@ -663,8 +662,45 @@ struct Mata : Trial {
 };
 
 
+//////////////////////
 
+struct Paw : Trial {
+    Paw(){
+        identifier  = "paw";
+        folderPath  = ASSETS_PATH;
+        imageName   = "paw.png";
+        isovalues   = {100};
+        waveLength  = 110;
+        flux        = -0.3;
+        minDensity  = 3;
+        maxDensity  = 40;
+    }
+};
 
+struct Taurus : Trial {
+    Taurus(){
+        identifier  = "taurus";
+        folderPath  = ASSETS_PATH;
+        imageName   = "taurus.png";
+        isovalues   = {150};
+        waveLength  = 110;
+        flux        = -0.3;
+        minDensity  = 0.9;
+        maxDensity  = 25;
+    }
+};
 
+struct MonkeyA : Trial {
+    MonkeyA(){
+        identifier  = "monkey";
+        folderPath  = ASSETS_PATH;
+        imageName   = "monkey";
+        isovalues   = {20};
+        waveLength  = 45;
+        flux        = -0.3;
+        minDensity  = 2.0;
+        maxDensity  = 20.0;
+    }
+};
 
 #endif /* Trials_h */

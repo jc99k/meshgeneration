@@ -6,7 +6,7 @@
 #include "BMesh/Image.hpp"
 #include "BMesh/Exporter.hpp"
 #include "BMesh/Poisson2.hpp"
-// #include "BMesh/Triangulation.hpp"
+#include "BMesh/Triangulation.hpp"
 
 #include <fstream>
 #include <sstream>
@@ -106,18 +106,18 @@ void trialDensity(TrialPointer trial, std::string path) {
 
 #pragma mark - Triangulation
 
-                // Histogram histogram;
-                // std::shared_ptr<CGALTriangulation> triangulation;
+                Histogram histogram;
+                std::shared_ptr<CGALTriangulation> triangulation;
 
-                // brahand::Profile<>::time("Triangulation", [&](){
-                //     if(image.size.depth == 1){ triangulation = std::make_shared<CGALTriangulation2D>( samples, image.size);
-                //     } else { triangulation = std::make_shared<CGALTriangulation3D>( samples, image.size); }
-                // });
+                brahand::Profile<>::time("Triangulation", [&](){
+                    if(image.size.depth == 1){ triangulation = std::make_shared<CGALTriangulation2D>( samples, image.size);
+                    } else { triangulation = std::make_shared<CGALTriangulation3D>( samples, image.size); }
+                });
 
-                // histogram = triangulation->generate(path, "triangulation" + std::to_string(trialNumber) , image);
-                // std::vector<uint> h = saveHistogram(path, "histogram" + std::to_string(trialNumber) + ".txt", histogram);
+                histogram = triangulation->generate(path, "triangulation" + std::to_string(trialNumber) , image);
+                std::vector<uint> h = saveHistogram(path, "histogram" + std::to_string(trialNumber) + ".txt", histogram);
 
-                // results.push_back({ trialNumber, minDensity, maxDensity, samples.count, h, {initMin,bounds},{initMin,bounds} });
+                results.push_back({ trialNumber, minDensity, maxDensity, samples.count, h, {initMin,bounds},{initMin,bounds} });
             }
         }
 

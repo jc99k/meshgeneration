@@ -26,7 +26,7 @@ namespace brahand {
             for(ushort z = 0 ; z < size.depth ; ++z){
                 for(ushort y = 0 ; y < size.height ; ++y){
                     for(ushort x = 0 ; x < size.width ; ++x){
-                        file << x << " " << size.height - y << " " << z << "\n";
+                        file << x << " " << (size.height - 1) - y << " " << z << "\n";
                     }
                 }
             }
@@ -65,20 +65,24 @@ namespace brahand {
             for(ushort z = 0 ; z < size.depth ; ++z){
                 for(ushort y = 0 ; y < size.height ; ++y){
                     for(ushort x = 0 ; x < size.width ; ++x){
-                        file << x << " " << size.height - y << " " << z << "\n";
+                        file << x << " " << (size.height - 1) - y << " " << z << "\n";
                     }
                 }
             }
             
-            file << "CELLS " << size.total() << " " << size.total() * 2 << "\n";
-            for(uint i = 0 ; i < size.total() ; ++i) file << "1 " << i << "\n";
+            // file << "CELLS " << size.total() << " " << size.total() * 2 << "\n";
+            // for(uint i = 0 ; i < size.total() ; ++i) file << "1 " << i << "\n";
             
-            file << "CELL_TYPES " << size.total() << "\n";
-            for(uint i = 0 ; i < size.total() ; ++i) file << "1 ";
+            // file << "CELL_TYPES " << size.total() << "\n";
+            // for(uint i = 0 ; i < size.total() ; ++i) file << "1 ";
             
-            file << "\nCELL_DATA " << size.total() << "\nCOLOR_SCALARS float 1\n";
+            //POINT_DATA 7
+            // FIELD FieldData 1
+            // COLORPATTERNS 1 7 float
+
+            file << "\nPOINT_DATA " << size.total() << "\nFIELD FieldData 1\nVALUE 1 " << size.total() << " float\n";
             for(uint i = 0 ; i < size.total() ; ++i){
-                float color = (float)(image.imagePointer[i]) / minMax.second;
+                float color = (float)(image.imagePointer[i]);
                 file << color << "\n";
             }
             
@@ -98,7 +102,7 @@ namespace brahand {
             
             for(uint i = 0 ; i < array.count; ++i){
                 auto coordinate = size(array[i]);
-                file << coordinate.x << " " << size.height - coordinate.y << " " << coordinate.z << "\n";
+                file << coordinate.x << " " << (size.height - 1) - coordinate.y << " " << coordinate.z << "\n";
             }
             
             file << "CELLS " << array.count << " " << array.count * 2 << "\n";
@@ -136,7 +140,7 @@ namespace brahand {
             
             for(uint i = 0 ; i < array.count; ++i){
                 auto coordinate = size(array[i]);
-                file << coordinate.x << " " << size.height - coordinate.y << " " << coordinate.z << "\n";
+                file << coordinate.x << " " << (size.height - 1) - coordinate.y << " " << coordinate.z << "\n";
             }
             
             file << "CELLS " << array.count << " " << array.count * 2 << "\n";
@@ -181,7 +185,7 @@ namespace brahand {
                 auto d = density.imagePointer[i];
                 if(d >= 0){
                     auto c = size(i);
-                    file << c.x << " " << size.height - c.y << " " << c.z << "\n";
+                    file << c.x << " " << (size.height - 1) - c.y << " " << c.z << "\n";
                 }
             }
             file << "CELLS " << total << " " << total * 2 << "\n";
@@ -215,7 +219,7 @@ namespace brahand {
             float maxValue = std::numeric_limits<float>::min();
             for(brahand::uint i = 0 ; i < array.count; ++i){
                 auto c = size(array[i]);
-                file << c.x << " " << size.height - c.y << " " << c.z << "\n";
+                file << c.x << " " << (size.height - 1) - c.y << " " << c.z << "\n";
                 if( maxValue < density.imagePointer[array[i]] ){
                     maxValue = density.imagePointer[array[i]];
                 }

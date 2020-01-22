@@ -238,10 +238,14 @@ namespace brahand {
             } while(continueFlag);
             
             std::vector<uint> acceptedSamples;
+            int pcounter = 0;
             for(auto point : points){
                 if( point.status == PoissonStatus::ACCEPTED ){
                     auto c = point.position;
+                    // printf("%d %d: [%d %d]\n", pcounter, size(pcounter), c.x, c.y);
                     acceptedSamples.push_back(size(c.x,c.y,c.z));
+                    // std::cout << pcounter << " : " << acceptedSamples[pcounter] << std::endl;
+                    pcounter++;
                 }
             }
             

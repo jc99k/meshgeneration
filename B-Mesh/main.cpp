@@ -17,8 +17,8 @@
     #define KERNELS_PATH PROJECT_PATH ""
 #else
     #define IMAGEMAGICK_PATH "/usr/bin/convert"
-    #define RESULTS_PATH "/usr/src/app/Results/"
-    #define PROJECT_PATH "/usr/src/app/"
+    #define PROJECT_PATH "./"
+    #define RESULTS_PATH PROJECT_PATH "Results/"
     #define ASSETS_PATH PROJECT_PATH "Assets/"
     #define KERNELS_PATH PROJECT_PATH "B-Mesh/BMesh/Processing/OpenCL/"
 #endif
@@ -29,9 +29,9 @@
 int main() {
     std::setbuf(stdout, NULL);
     std::vector<TrialPointer> experiments {
-        BUILD_TRIAL(Taz),
+        BUILD_TRIAL(Dragon),
     };
-    
+
     for( auto trial : experiments ){
         const std::string path = RESULTS_PATH + trial->identifier + "/";
         mkdir(path.c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH );

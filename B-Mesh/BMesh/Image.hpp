@@ -102,7 +102,7 @@ namespace brahand {
         ImageWrapper(std::string path){
             cimg::imagemagick_path(IMAGEMAGICK_PATH);
             
-            SourcesPathArray files = (path.find_last_of('.') == -1)?brahand::filesInDirectory(path) : brahand::SourcesPathArray{path};
+            SourcesPathArray files = (path.find_last_of('.') == 0)?brahand::filesInDirectory(path) : brahand::SourcesPathArray{path};
             std::vector<CImg<>> imagesList(files.size());
             
             auto firstImage = CImg<>(files[0].c_str());
@@ -119,6 +119,21 @@ namespace brahand {
                     this->imagePointer[this->size(x, y, z)] = (AnyObject)imagesList[z](x,y);
                 }
             }
+
+            // auto image = CImg<>(files[0].c_str());
+            // this->size = {(ushort)image.width(), (ushort)image.height(), (ushort)image.height()};
+            // this->imagePointer = ArrayPointer<AnyObject>(size.total());
+            
+            // //#pragma omp parallel for
+            // for(auto z = 0 ; z < files.size() ; ++z){
+            //     imagesList[z] = CImg<>(files[z].c_str());
+            //     if(imagesList[z].spectrum() == 3){
+            //         imagesList[z] = imagesList[z].get_RGBtoYCbCr().get_channel(0);
+            //     }
+            //     cimg_forXY(imagesList[z], x, y){
+            //         this->imagePointer[this->size(x, y, z)] = (AnyObject)imagesList[z](x,y);
+            //     }
+            // }
         }
         ImageWrapper(ImageSize size){
             this->size = size;
@@ -127,6 +142,21 @@ namespace brahand {
         ImageWrapper(ImageSize size, AnyObject defaultValue){
             this->size = size;
             this->imagePointer = ArrayPointer<AnyObject>{size.total(), defaultValue};
+        }
+
+        void save(std::string filename){
+            // Create a Float type image...
+            CImg<AnyObject> image(size.width, size.height, size.depth, 1, 0);
+
+            for(auto z = 0 ; z < size.depth ; ++z){
+                for(auto y = 0 ; y < size.height ; ++y){
+                    for(auto x = 0 ; x < size.width ; ++x){
+                        image(x,y,z) = this->imagePointer[this->size(x, y, z)];
+                    }
+                }
+            }
+
+            image.save(filename.c_str());
         }
         
 #pragma mark - OpenMP/OpenCL processing functions

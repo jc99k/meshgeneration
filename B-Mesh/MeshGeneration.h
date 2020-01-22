@@ -5,7 +5,7 @@
 #include "BMesh/Image.hpp"
 #include "BMesh/Exporter.hpp"
 #include "BMesh/Poisson2.hpp"
-// #include "BMesh/Triangulation.hpp"
+#include "BMesh/Triangulation.hpp"
 
 
 void meshGeneration(TrialPointer trial, std::string path) {
@@ -82,15 +82,18 @@ void meshGeneration(TrialPointer trial, std::string path) {
     totalTime += brahand::Profile<>::time("Propagation", path,  [&](){ waveLenght = brahand::Image::propagation(density, dt, edgeWithFrameIndices, trial->waveLength); });
 
     
-    brahand::VTKExport::image(density, path, "densityMap");
-    brahand::VTKExport::density(density, edgeWithFrameIndices,  image.size, path, "edgeDensity");
-    brahand::VTKExport::density(density, edgeIndicesArray,  image.size, path, "edgeDensityWithoutFrame");
+    // brahand::VTKExport::image(density, path, "densityMap");
+    // brahand::VTKExport::density(density, edgeWithFrameIndices,  image.size, path, "edgeDensity");
+    // brahand::VTKExport::density(density, edgeIndicesArray,  image.size, path, "edgeDensityWithoutFrame");
     
     brahand::ImageWrapper<float> normalizedDensity = density.normalize<float>(trial->minDensity, trial->maxDensity);
     output << "WaveLenght\t" << waveLenght << "\n";
     output << "DensityMap\t" << density.imagePointer.minMax().first << " " << density.imagePointer.minMax().second << "\n";
     output << "DensityMap(n)\t" << normalizedDensity.imagePointer.minMax().first << " " << normalizedDensity.imagePointer.minMax().second << "\n";
 
+    // normalizedDensity.save("/home/jcduenas/Desktop/meshes/3D/dragon/dragon2.hdr");
+    normalizedDensity.save( RESULTS_PATH "normalizedDensityMap.hdr" );
+     
 
 #ifdef DEBUG_MODE
     if( dt.size.depth == 1 ){ dt.save2DElevationMap(path, "elevationMap"); }
@@ -114,30 +117,35 @@ void meshGeneration(TrialPointer trial, std::string path) {
     
     brahand::VTKExport::coordinates(edgeSamples, image.size, path, "edgeSamples", density);
     brahand::VTKExport::coordinates(frameSamples, image.size, path, "frameSamples", density);
-    brahand::VTKExport::coordinates(samples, image.size, path, "interiorSamples", density);
+    // brahand::VTKExport::coordinates(samples, image.size, path, "interiorSamples", density);
 
 #pragma mark - Triangulation
 
-//    Histogram interiorHistogram, edgeHistogram;
+   Histogram interiorHistogram, edgeHistogram;
     
-//    std::shared_ptr<CGALTriangulation> interiorTriangulation, edgeTriangulation;
+   std::shared_ptr<CGALTriangulation> interiorTriangulation, edgeTriangulation;
 
-//    if(image.size.depth == 1) {
-//        interiorTriangulation = std::make_shared<CGALTriangulation2D>( samples, image.size);
-//        edgeTriangulation = std::make_shared<CGALTriangulation2D>( frameSamples, image.size);
+   if(image.size.depth == 1) {
+    //    interiorTriangulation = std::make_shared<CGALTriangulation2D>( samples, image.size);
+       edgeTriangulation = std::make_shared<CGALTriangulation2D>( frameSamples, image.size);
         
-//        totalTime += brahand::Profile<>::time("InteriorTriangulation",path,  [&](){ interiorTriangulation->triangulate(); });
-//        totalTime += brahand::Profile<>::time("EdgeTriangulation",path,  [&](){ edgeTriangulation->triangulate(); });
-//    } else {
-//    }
+    //    totalTime += brahand::Profile<>::time("InteriorTriangulation",path,  [&](){ interiorTriangulation->triangulate(); });
+       totalTime += brahand::Profile<>::time("EdgeTriangulation",path,  [&](){ edgeTriangulation->triangulate(); });
+   } else {
+    //    interiorTriangulation = std::make_shared<CGALTriangulation3D>( samples, image.size);
+       edgeTriangulation = std::make_shared<CGALTriangulation3D>( frameSamples, image.size);
+
+    //    totalTime += brahand::Profile<>::time("InteriorTriangulation",path,  [&](){ interiorTriangulation->triangulate(); });
+       totalTime += brahand::Profile<>::time("EdgeTriangulation",path,  [&](){ edgeTriangulation->triangulate(); });
+   }
     
-//    output << "EdgeTriangulationCount\t" << edgeTriangulation->elementsCount << "\n";
+   output << "EdgeTriangulationCount\t" << edgeTriangulation->elementsCount << "\n";
 //    output << "InteriorTriangulationCount\t" << interiorTriangulation->elementsCount << "\n";
     
-//    edgeHistogram = edgeTriangulation->generateHistogram(path, "edgeTriangulation", image);
+   edgeHistogram = edgeTriangulation->generateHistogram(path, "edgeTriangulation", normalizedDensity);
 //    interiorHistogram = interiorTriangulation->generateHistogram(path, "interiorTriangulation", image);
     
-//    saveHistogram(path, "histogram.txt", edgeHistogram, interiorHistogram);
+    // saveHistogram(path, "histogram.txt", edgeHistogram, interiorHistogram);
     output << "Total time\t" << totalTime << "\n";
 }
 

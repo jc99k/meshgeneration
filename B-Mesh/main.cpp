@@ -24,20 +24,46 @@
 #endif
 
 #include <sys/stat.h>
+#include <string>
 #include "MeshGeneration.h"
+#include "Yaml.hpp"
 
-int main() {
+int main(int argc, char** argv) {
     std::setbuf(stdout, NULL);
-    std::vector<TrialPointer> experiments {
-        BUILD_TRIAL(Dragon),
-    };
+    // std::vector<TrialPointer> experiments {
+    //     BUILD_TRIAL(Dragonfruit),
+    // };
 
-    for( auto trial : experiments ){
-        const std::string path = RESULTS_PATH + trial->identifier + "/";
-        mkdir(path.c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH );
+    // for( auto trial : experiments ){
+    //     const std::string path = RESULTS_PATH + trial->identifier + "/";
+    //     mkdir(path.c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH );
 
-        meshGeneration(trial, path);
-    }
+    //     meshGeneration(trial, path);
+    // }
+
+    TrialPointer trial = BUILD_TRIAL(CustomTrial);
+
+    /* Parse YAML */
+    std::string case_filename = argv[1];
+    std::string case_name = argv[2];
+
+    Yaml::Node root;
+    Yaml::Parse(root, case_filename.c_str());
+	Yaml::Node& selected = root["cases"][case_name];
+
+    trial->identifier = selected["identifier"].As<std::string>();
+    trial->folderPath = ASSETS_PATH;
+    trial->imageName = selected["imageName"].As<std::string>();
+    trial->waveLength = selected["waveLength"].As<int>();
+    trial->flux = selected["flux"].As<float>();
+    trial->minDensity = selected["minDensity"].As<float>();
+    trial->maxDensity = selected["maxDensity"].As<float>();
+    for(auto it = selected["isovalues"].Begin(); it != selected["isovalues"].End(); it++) trial->isovalues.push_back((*it).second.As<float>());    
+
+    const std::string path = RESULTS_PATH + trial->identifier + "/";
+    mkdir(path.c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH );
+
+    meshGeneration(trial, path);
 
     return 0;
 }

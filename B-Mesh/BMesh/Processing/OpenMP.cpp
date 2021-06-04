@@ -29,11 +29,11 @@ namespace brahand {
                         for ( a = y-1; a <= y+1; a++ ){
                             for ( b = x-1; b <= x+1; b++ ){
                                 // if ( a == b && b == c ) continue;
-                                // if ( a == y-1 && b == x-1 ) continue;
-                                // if ( a == y-1 && b == x+1 ) continue;
-                                // if ( a == y+1 && b == x-1 ) continue;
-                                // if ( a == y+1 && b == x+1 ) continue;
-                                if ( abs(a - y) + abs(b - x) + abs(c - cinit) > 1 ) continue;
+                                if ( a == y-1 && b == x-1 ) continue;
+                                if ( a == y-1 && b == x+1 ) continue;
+                                if ( a == y+1 && b == x-1 ) continue;
+                                if ( a == y+1 && b == x+1 ) continue;
+                                // if ( abs(a - y) + abs(b - x) + abs(c - cinit) > 1 ) continue;
                                 
                                 neighborIndex   = (c * this->size.width  * this->size.height) + (a * this->size.width) + b;
                                 neighbor        = this->imagePointer[neighborIndex];
@@ -53,8 +53,8 @@ namespace brahand {
                                         // output.imagePointer[index] = (AnyObject) 255;
                                         // output.imagePointer[neighborIndex] = (AnyObject) 255;
 
-                                        targetIndex = (min == current)? index : neighborIndex;
-                                        // targetIndex = (max == current)? index : neighborIndex;
+                                        // targetIndex = (min == current)? index : neighborIndex;
+                                        targetIndex = (max == current)? index : neighborIndex;
                                         output.imagePointer[targetIndex] = (AnyObject) 255;
                                     }
                                 }

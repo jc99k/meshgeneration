@@ -1,0 +1,42 @@
+---
+  - name: "Generate mesh and save binary mesh to Segmentation directory"
+    hosts: localhost
+    connection: local 
+    tasks:
+
+    - name: "Generate mesh"
+      shell: "./build/BMesh cases/base_cases.yml {{case}}"
+      tags:
+        - default
+    
+    - name: "Save binary mesh to segmentation directory"
+      shell: "pvpython --force-offscreen-rendering pv_save_to_binary.py --case {{case}}"
+      tags:
+        - default
+
+  - name: "Generate mesh for several isovalues"
+    hosts: localhost
+    connection: local 
+    tasks:
+
+    - name: Replace isovalues.yml with {{case}}
+      replace:
+        path: cases/isovalues.yml
+        regexp: 'identifier: .*'
+        replace: "identifier: {{case}}"
+      tags:
+        - isovalues
+
+    - name: Replace isovalues.yml with {{case}}
+      replace:
+        path: cases/isovalues.yml
+        regexp: 'imageName: .*'
+        replace: "imageName: {{case}}.png"
+      tags:
+        - isovalues    
+
+    - name: "Generate mesh"
+      shell: "./build/BMesh cases/isovalues.yml iso_{{item}} && cp ./Results/{{case}}/edgeSamples.vtk /home/jcduenas/Desktop/meshes/2D/{{case}}/iso_{{item}}.vtk"
+      loop: "{{ range(0, 255, 10)|list }}"
+      tags:
+        - isovalues        

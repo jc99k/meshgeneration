@@ -1,0 +1,108 @@
+cases:
+  paw:
+    identifier: paw
+    imageName: paw.png
+    isovalues:
+      # - 245.0
+      - 120.0
+    waveLength: 45
+    flux: -0.3
+    minDensity: 4.0
+    maxDensity: 7.0
+
+  titicaca:
+    identifier: titicaca
+    imageName: titicaca2.png
+    isovalues:
+      - 80.0
+    waveLength: 45
+    flux: -0.3
+    minDensity: 4.0
+    maxDensity: 7.0
+
+  mon:
+    identifier: mon
+    imageName: mon.png
+    isovalues:
+      - 5.0
+    waveLength: 45
+    flux: -0.3
+    minDensity: 4.0
+    maxDensity: 7.0
+
+  hyena:
+    identifier: hyena
+    imageName: hyena.png
+    isovalues:
+      - 10.0
+    waveLength: 45
+    flux: -0.3
+    minDensity: 4.0
+    maxDensity: 7.0
+
+  dragonfruit:
+    identifier: dragonfruit
+    imageName: dragonfruit.png
+    isovalues:
+      - 120.0
+      # - 180.0
+    waveLength: 45
+    flux: -0.3
+    minDensity: 4.0
+    maxDensity: 7.0
+
+  hand:
+    identifier: hand
+    imageName: hand.png
+    isovalues:
+      - 40.0
+      - 100.0
+      - 130.0
+    waveLength: 45
+    flux: -0.3
+    minDensity: 4.0
+    maxDensity: 7.0
+
+  kanji:
+    identifier: kanji
+    imageName: kanji.png
+    isovalues:
+      - 120.0
+      # - 10.0
+    waveLength: 45
+    flux: -0.3
+    minDensity: 4.0
+    maxDensity: 7.0
+
+  knee:
+    identifier: knee
+    imageName: knee
+    isovalues:
+      # - 5.0
+      - 58.0
+    waveLength: 76;
+    flux: -0.3
+    minDensity: 4.0
+    maxDensity: 7.0
+
+  arm:
+    identifier: arm
+    imageName: arm
+    isovalues:
+      # - 10.0
+      - 120.0
+    waveLength: 76;
+    flux: -0.3
+    minDensity: 4.0
+    maxDensity: 7.0
+
+  wingdragon:
+    identifier: wingdragon
+    imageName: wingdragon.png
+    isovalues:
+      # - 245.0
+      - 120.0
+    waveLength: 45
+    flux: -0.3
+    minDensity: 4.0
+    maxDensity: 50.0

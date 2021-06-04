@@ -280,11 +280,11 @@ struct Knee : Trial {
         identifier  = "knee";
         folderPath  = ASSETS_PATH;
         imageName   = "knee";
-        isovalues   = {60,10};
+        isovalues   = {69,20};
         waveLength  = 76; // 280
         flux        = -0.3;
-        minDensity  = 2;
-        maxDensity  = 25.0;
+        minDensity  = 0.75;
+        maxDensity  = 7.0;
     }
 };
 
@@ -307,11 +307,11 @@ struct Foot : Trial {
         identifier  = "foot";
         folderPath  = ASSETS_PATH;
         imageName   = "foot";
-        isovalues   = {8};
+        isovalues   = {8, 69};
         waveLength  = 67;
         flux        = -0.3;
-        minDensity  = 2.0;
-        maxDensity  = 20.0;
+        minDensity  = 0.75;
+        maxDensity  = 15.0;
     }
 };
 
@@ -526,8 +526,8 @@ struct ChestP : Trial {
         isovalues   = {120,50};
         waveLength  = 380;
         flux        = -0.5;
-        minDensity  = 2;
-        maxDensity  = 60;
+        minDensity  = 0.5;
+        maxDensity  = 5;
     }
 };
 
@@ -700,6 +700,76 @@ struct MonkeyA : Trial {
         flux        = -0.3;
         minDensity  = 2.0;
         maxDensity  = 20.0;
+    }
+};
+
+struct Arm : Trial {
+    Arm(){
+        identifier  = "arm";
+        folderPath  = ASSETS_PATH;
+        imageName   = "arm";
+        isovalues   = {10, 100};
+        waveLength  = 45;
+        flux        = -0.3;
+        minDensity  = 2.0;
+        maxDensity  = 20.0;
+    }
+};
+
+struct Head : Trial {
+    Head(){
+        identifier  = "head";
+        folderPath  = ASSETS_PATH;
+        imageName   = "head";
+        isovalues   = {45, 80};
+        waveLength  = 45;
+        flux        = -0.3;
+        minDensity  = 0.5;
+        maxDensity  = 5.0;
+    }
+};
+
+struct LizardT : Trial {
+    LizardT(){
+        identifier  = "lizard_tessellation";
+        folderPath  = ASSETS_PATH;
+        imageName   = "lizard_tessellation.png";
+        isovalues   = {100, 200};
+        waveLength  = 45;
+        flux        = -0.3;
+        minDensity  = 3.0;
+        maxDensity  = 10.0;
+    }
+};
+
+struct Pacman : Trial {
+    Pacman(){
+        identifier  = "pacman";
+        folderPath  = ASSETS_PATH;
+        imageName   = "pacman.png";
+        isovalues   = {50, 90, 120, 210};
+        waveLength  = 45;
+        flux        = -0.3;
+        minDensity  = 0.25;
+        maxDensity  = 7.0;
+    }
+};
+
+struct Dragonfruit : Trial {
+    Dragonfruit(){
+        identifier  = "dragonfruit";
+        folderPath  = ASSETS_PATH;
+        imageName   = "dragonfruit.png";
+        isovalues   = {60};
+        waveLength  = 45;
+        flux        = -0.3;
+        minDensity  = 1;
+        maxDensity  = 7.0;
+    }
+};
+
+struct CustomTrial : Trial {
+    CustomTrial(){
     }
 };
 

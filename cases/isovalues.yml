@@ -1,0 +1,260 @@
+cases:
+  iso_0:
+    identifier: kanji
+    imageName: kanji.png
+    isovalues:
+      - 0.0
+    waveLength: 45
+    flux: -0.3
+    minDensity: 4.0
+    maxDensity: 7.0
+
+  iso_10:
+    identifier: kanji
+    imageName: kanji.png
+    isovalues:
+      - 10.0
+    waveLength: 45
+    flux: -0.3
+    minDensity: 4.0
+    maxDensity: 7.0
+
+  iso_20:
+    identifier: kanji
+    imageName: kanji.png
+    isovalues:
+      - 20.0
+    waveLength: 45
+    flux: -0.3
+    minDensity: 4.0
+    maxDensity: 7.0
+
+  iso_30:
+    identifier: kanji
+    imageName: kanji.png
+    isovalues:
+      - 30.0
+    waveLength: 45
+    flux: -0.3
+    minDensity: 4.0
+    maxDensity: 7.0
+
+  iso_40:
+    identifier: kanji
+    imageName: kanji.png
+    isovalues:
+      - 40.0
+    waveLength: 45
+    flux: -0.3
+    minDensity: 4.0
+    maxDensity: 7.0
+
+  iso_50:
+    identifier: kanji
+    imageName: kanji.png
+    isovalues:
+      - 50.0
+    waveLength: 45
+    flux: -0.3
+    minDensity: 4.0
+    maxDensity: 7.0
+
+  iso_60:
+    identifier: kanji
+    imageName: kanji.png
+    isovalues:
+      - 60.0
+    waveLength: 45
+    flux: -0.3
+    minDensity: 4.0
+    maxDensity: 7.0
+
+  iso_70:
+    identifier: kanji
+    imageName: kanji.png
+    isovalues:
+      - 70.0
+    waveLength: 45
+    flux: -0.3
+    minDensity: 4.0
+    maxDensity: 7.0
+
+  iso_80:
+    identifier: kanji
+    imageName: kanji.png
+    isovalues:
+      - 80.0
+    waveLength: 45
+    flux: -0.3
+    minDensity: 4.0
+    maxDensity: 7.0
+
+  iso_90:
+    identifier: kanji
+    imageName: kanji.png
+    isovalues:
+      - 90.0
+    waveLength: 45
+    flux: -0.3
+    minDensity: 4.0
+    maxDensity: 7.0
+
+  iso_100:
+    identifier: kanji
+    imageName: kanji.png
+    isovalues:
+      - 100.0
+    waveLength: 45
+    flux: -0.3
+    minDensity: 4.0
+    maxDensity: 7.0
+
+  iso_110:
+    identifier: kanji
+    imageName: kanji.png
+    isovalues:
+      - 110.0
+    waveLength: 45
+    flux: -0.3
+    minDensity: 4.0
+    maxDensity: 7.0
+
+  iso_120:
+    identifier: kanji
+    imageName: kanji.png
+    isovalues:
+      - 120.0
+    waveLength: 45
+    flux: -0.3
+    minDensity: 4.0
+    maxDensity: 7.0
+
+  iso_130:
+    identifier: kanji
+    imageName: kanji.png
+    isovalues:
+      - 130.0
+    waveLength: 45
+    flux: -0.3
+    minDensity: 4.0
+    maxDensity: 7.0
+
+  iso_140:
+    identifier: kanji
+    imageName: kanji.png
+    isovalues:
+      - 140.0
+    waveLength: 45
+    flux: -0.3
+    minDensity: 4.0
+    maxDensity: 7.0
+
+  iso_150:
+    identifier: kanji
+    imageName: kanji.png
+    isovalues:
+      - 150.0
+    waveLength: 45
+    flux: -0.3
+    minDensity: 4.0
+    maxDensity: 7.0
+
+  iso_160:
+    identifier: kanji
+    imageName: kanji.png
+    isovalues:
+      - 160.0
+    waveLength: 45
+    flux: -0.3
+    minDensity: 4.0
+    maxDensity: 7.0
+
+  iso_170:
+    identifier: kanji
+    imageName: kanji.png
+    isovalues:
+      - 170.0
+    waveLength: 45
+    flux: -0.3
+    minDensity: 4.0
+    maxDensity: 7.0
+
+  iso_180:
+    identifier: kanji
+    imageName: kanji.png
+    isovalues:
+      - 180.0
+    waveLength: 45
+    flux: -0.3
+    minDensity: 4.0
+    maxDensity: 7.0
+
+  iso_190:
+    identifier: kanji
+    imageName: kanji.png
+    isovalues:
+      - 190.0
+    waveLength: 45
+    flux: -0.3
+    minDensity: 4.0
+    maxDensity: 7.0
+
+  iso_200:
+    identifier: kanji
+    imageName: kanji.png
+    isovalues:
+      - 200.0
+    waveLength: 45
+    flux: -0.3
+    minDensity: 4.0
+    maxDensity: 7.0
+
+  iso_210:
+    identifier: kanji
+    imageName: kanji.png
+    isovalues:
+      - 210.0
+    waveLength: 45
+    flux: -0.3
+    minDensity: 4.0
+    maxDensity: 7.0
+
+  iso_220:
+    identifier: kanji
+    imageName: kanji.png
+    isovalues:
+      - 220.0
+    waveLength: 45
+    flux: -0.3
+    minDensity: 4.0
+    maxDensity: 7.0
+
+  iso_230:
+    identifier: kanji
+    imageName: kanji.png
+    isovalues:
+      - 230.0
+    waveLength: 45
+    flux: -0.3
+    minDensity: 4.0
+    maxDensity: 7.0
+
+  iso_240:
+    identifier: kanji
+    imageName: kanji.png
+    isovalues:
+      - 240.0
+    waveLength: 45
+    flux: -0.3
+    minDensity: 4.0
+    maxDensity: 7.0
+
+  iso_250:
+    identifier: kanji
+    imageName: kanji.png
+    isovalues:
+      - 250.0
+    waveLength: 45
+    flux: -0.3
+    minDensity: 4.0
+    maxDensity: 7.0

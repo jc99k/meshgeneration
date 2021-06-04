@@ -1,4 +1,5 @@
-Assets/
+Assets/*
+!Assets/README.md
 Debug/
 B-Mesh/BMesh.pro.user
 B-Mesh/Assets.zip
